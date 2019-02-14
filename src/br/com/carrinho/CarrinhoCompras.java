@@ -11,12 +11,11 @@ public class CarrinhoCompras {
 
 
 	private List<Produto> itens = new ArrayList<Produto>();
-	private ObservadorCarrinho observador;
-		
+	private List<ObservadorCarrinho> observadores = new ArrayList<>();
+
 	public void adicionaProduto(Produto p) {
 		this.itens.add(p);
-		
-		if(observador != null) {
+		for (ObservadorCarrinho observador : this.observadores) {
 			observador.produtoAdicionado(p.getNome(), p.getValor());
 		}
 	}
@@ -29,7 +28,7 @@ public class CarrinhoCompras {
 	}
 
 	public void adicionarObservador(MockObservadorCarrinho observador) {
-		this.observador = observador;
+		this.observadores.add(observador);
 	}
 
 
