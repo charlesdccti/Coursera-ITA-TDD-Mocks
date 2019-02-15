@@ -36,4 +36,22 @@ public class TesteCarrinhoCompras {
 		mock2.verificaRecebimentoProduto("tenis", 100);
 	}
 	
+	@Test
+	public void continuaNotificandoComErroEmObservador() {
+		CarrinhoCompras c = new CarrinhoCompras();
+		MockObservadorCarrinho mock1 = new MockObservadorCarrinho();
+		MockObservadorCarrinho mock2 = new MockObservadorCarrinho();
+		mock2.queroQueVoceDePau();
+		MockObservadorCarrinho mock3 = new MockObservadorCarrinho();
+		c.adicionarObservador(mock1);
+		c.adicionarObservador(mock2);
+		c.adicionarObservador(mock3);
+		c.adicionaProduto(new Produto("tenis", 100));
+		mock1.verificaRecebimentoProduto("tenis", 100);
+		mock3.verificaRecebimentoProduto("tenis", 100);
+	}
+	
+	
+	
+	
 }

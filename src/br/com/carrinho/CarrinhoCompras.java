@@ -16,7 +16,9 @@ public class CarrinhoCompras {
 	public void adicionaProduto(Produto p) {
 		this.itens.add(p);
 		for (ObservadorCarrinho observador : this.observadores) {
-			observador.produtoAdicionado(p.getNome(), p.getValor());
+			try {
+				observador.produtoAdicionado(p.getNome(), p.getValor());
+			} catch (Exception e) {/* continua a execucao em caso de excecao */}
 		}
 	}
 
